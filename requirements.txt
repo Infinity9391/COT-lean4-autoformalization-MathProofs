@@ -1,0 +1,4 @@
+anthropic>=0.34.0
+axiom-axle>=1.0.0
+datasets>=2.14.0
+httpx>=0.25.0
