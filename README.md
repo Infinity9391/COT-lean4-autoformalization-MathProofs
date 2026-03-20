@@ -118,9 +118,9 @@ The most revealing evidence comes from individual problem analysis. Consider mat
 
 **Baseline (PASSED):** The model imported Mathlib.Algebra.Field.Basic and Mathlib.Tactic, then let powerful automation tactics handle the proof. It chose its own strategy freely and succeeded.
 
-**Full CoT (FAILED):** Step 1 produced a proof sketch: "The key insight is to use partial fraction decomposition by finding a common denominator and equating coefficients." Step 3, now anchored to this human style strategy, attempted to manually execute it with `intro x h3 h5` and explicit rewriting — leading to unsolved goals and a sorry fallback.
+**Full CoT (FAILED):** Step 1 produced a proof sketch: "The key insight is to use partial fraction decomposition by finding a common denominator and equating coefficients." Step 3, now anchored to this human style strategy, attempted to manually execute it with `intro x h3 h5` and explicit rewriting leading to unsolved goals.
 
-The baseline model likely used `field_simp`, `ring`, or `norm_num` — powerful Lean automation that doesn't correspond to how a human would write the proof on paper. The CoT reasoning steered the model away from the best Lean strategy and toward a human readable but Lean incompatible approach.
+The baseline model likely used `field_simp`, `ring`, or `norm_num` powerful Lean automation that doesn't correspond to how a human would write the proof on paper. The CoT reasoning steered the model away from the best Lean strategy and toward a human readable but Lean incompatible approach.
 
 ### 2. Natural Language Reasoning ≠ Formal Proof Strategy
 Lean 4's strength is its tactic system: `norm_num` can dispatch numeric computations, `ring` handles ring identities, `omega` solves linear arithmetic, and `simp` applies simplification lemmas. These tactics don't map to natural language proof steps like "factor the denominator" or "equate coefficients."
@@ -148,7 +148,7 @@ The guided baseline (8%  worst of all) tells the model to "reason about key math
 
 4. **Better instructions alone make things worse.** The guided baseline performs worst (8%), suggesting that detailed strategic instructions without multi-step structure actively hurt. The model performs best when given maximum freedom to choose its own approach.
 
-5. **Context restriction doesn't rescue CoT.** Masked CoT (10%) performs identically to full CoT (10%). The information distillation hypothesis is neither confirmed nor refuted — the fundamental problem is that explicit reasoning hurts, regardless of context management.
+5. **Context restriction doesn't rescue CoT.** Masked CoT (10%) performs identically to full CoT (10%). The information distillation hypothesis is neither confirmed but at the same time it's not flat out denied  the fundamental problem is that explicit reasoning hurts, regardless of context management.
 
 ---
 
